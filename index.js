@@ -1,6 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+
+dotenv.config();
 
 //init our app
 const app = express();
@@ -8,7 +11,7 @@ const app = express();
 //Configure and connecting database
 const dbConfig = require('./config/keys');
 mongoose.Promise = global.Promise;
-mongoose.connect(dbConfig.url, {
+mongoose.connect(process.env.MONGO_DB_URI , {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() =>{
